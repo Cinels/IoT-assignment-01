@@ -1,0 +1,40 @@
+@startuml
+hide empty description
+
+state START
+
+state BEGIN
+
+state PLAY
+
+state SHOW_SCORE
+
+state GAME_OVER
+
+state choice <<choice>>
+
+state SLEEP
+
+
+[*] -down-> START
+
+START -left-> BEGIN : B1 pressed
+
+START -right-> SLEEP : after(10 seconds)
+
+BEGIN -left-> PLAY : after(1 second)
+
+PLAY -down-> choice: after(T seconds)
+
+choice -left-> SHOW_SCORE : [correctConvertion]
+
+choice -right-> GAME_OVER : [not correctConvertion]
+
+SHOW_SCORE -up-> PLAY : after(1 second)
+
+GAME_OVER -right-> GAME_OVER : after(1 second) /turn all leds off
+
+GAME_OVER -up-> START : after(10 seconds)
+
+SLEEP -left-> START : any button pressed
+@enduml
