@@ -33,7 +33,7 @@ static void buttonPressed(states* state, short button) {
     changeLedState(button - OFFSET);
   } else if(*state == SLEEP) {
     // Serial.println("START");
-    *state = START;
+    *state = START; 
     clear(Q);
     fadeInitialize(Lr);
     startScreen();
@@ -54,6 +54,6 @@ static void buttonInterruptHandler() {
 
 void buttonInterruptSetup(Queue* queue) {
   for(int i = 0; i < 4; i++) {
-    enableInterrupt(i + OFFSET, buttonInterruptHandler, FALLING);  
+    enableInterrupt(i + OFFSET, buttonInterruptHandler, FALLING);
   }
 }
